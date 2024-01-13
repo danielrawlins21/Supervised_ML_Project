@@ -1,3 +1,4 @@
+from wsgiref import simple_server
 from flask import Flask, request, render_template
 from flask import Response
 from flask_cors import CORS, cross_origin
@@ -19,4 +20,8 @@ def training_route_client():
 
 
 if __name__ == "__main__":
-    app.run()
+    #app.run()
+    host = '0.0.0.0'
+    port = 5000
+    httpd = simple_server.make_server(host, port, app)
+    httpd.serve_forever()

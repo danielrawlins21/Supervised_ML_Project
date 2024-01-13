@@ -1,5 +1,6 @@
 pandas
 Flask
+Flask-Cors
 kneed
 Flask-MonitoringDashboard
 Jinja2
