@@ -1,4 +1,12 @@
 pandas
+Flask
+kneed
+Flask-MonitoringDashboard
+Jinja2
+werkzeug
+itsdangerous
+certifi
+MarkupSafe
 numpy
 xgboost
 matplotlib
