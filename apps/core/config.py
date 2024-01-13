@@ -30,8 +30,8 @@ class Config:
     def get_run_id(self):
         """
         *method: get_run_id
-        description: method to generate run id
-        return: none
+        *description: method to generate run id
+        *return: none
         *
         *who           when           version   change (include bug# if apply)
         *---------     -----------    -------   ------------------------------
