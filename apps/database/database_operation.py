@@ -68,3 +68,6 @@ class DatabaseOperation:
         """
         try:
             self.logger.info('Start of Creating Table...')
+        except Exception as e:
+            self.logger.exception('Exception raised while Creating Table: %s' %e)
+            raise e
