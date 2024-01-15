@@ -232,4 +232,104 @@ class LoadValidate:
             self.logger.exception('Exception raised while Archivinf Old Rejected Files: %s' %e)
             raise e
             
+    def move_processed_files(self):
+        """
+        *method: move_processed_files
+        *description: method to move processed files
+        *return: none
+        *
+        *who           when           version   change (include bug# if apply)
+        *---------     -----------    -------   ------------------------------
+        *D. Rawlins    12-JAN-2024       1.0     initial creation
+        *
+        *Parameters
+        *   none:
+        """
+        try:
+            self.logger.info('Start of Moving Processed Files...')
+            for file in listdir(self.data_path):
+                shutil.move(self.data_path+'/'+file, self.data_path+'_processed')
+                self.logger.info("Moved the already processed file %s"%file)
+            self.logger.info('End of Moving Processed Files...')
+        except Exception as e:
+            self.logger.exception('Exception raised while Moving Processed File %s'%e)
+            raise e
+    
+    def validate_trainset(self):
+        """
+        *method: validate_trainset
+        *description: method to validate the train data
+        *return: none
+        *
+        *who           when           version   change (include bug# if apply)
+        *---------     -----------    -------   ------------------------------
+        *D. Rawlins    12-JAN-2024       1.0     initial creation
+        *
+        *Parameters
+        *   none:
+        """
+        try:
+            self.logger.info('Start of Data Load, validation and transformation...')
+            #archive old files
+            self.archive_old_files()
+            #extracting values from training schema
+            column_names, number_of_columns = self.values_from_schema('schema_train')
+            #validating column length in the file
+            self.validate_column_length(number_of_columns)
+            #validating if any column has all values missing
+            self.validate_missing_values()
+            #replacing blanks in the csv file with "NULL" values
+            self.replace_missing_values()
+            #create database with given name, if present open the connection! Create table with columns given in schema
+            self.dbOperation.create_table('training','training_raw_data_t', column_names)
+            #insert csv files in the table
+            self.dbOperation.insert_data('training','training_raw_data_t')
+            #export data in table to csv file
+            self.dbOperation.export_csv('training','training_raw_data_t')
+            #move processed files
+            self.move_processed_files()
+            self.logger.info('End of Data Load, validation and transformation')
+        except Exception:
+            self.logger('Unsuccessful End of Data Load, validation and transformation')
+            raise Exception
+    
+    def validate_predictset(self):
+        """
+        *method: validate_predictset
+        *description: method to validate the predict data
+        *return: none
+        *
+        *who           when           version   change (include bug# if apply)
+        *---------     -----------    -------   ------------------------------
+        *D. Rawlins    12-JAN-2024       1.0     initial creation
+        *
+        *Parameters
+        *   none:
+        """
+        try:
+            self.logger.info('Start of Data Load, validation and transformation...')
+            #archive old files
+            self.archive_old_files()
+            #extracting values from training schema
+            column_names, number_of_columns = self.values_from_schema('schema_predict')
+            #validating column length in the file
+            self.validate_column_length(number_of_columns)
+            #validating if any column has all values missing
+            self.validate_missing_values()
+            #replacing blanks in the csv file with "NULL" values
+            self.replace_missing_values()
+            #create database with given name, if present open the connection! Create table with columns given in schema
+            self.dbOperation.create_table('prediction','prediction_raw_data_t', column_names)
+            #insert csv files in the table
+            self.dbOperation.insert_data('prediction','prediction_raw_data_t')
+            #export data in table to csv file
+            self.dbOperation.export_csv('prediction','prediction_raw_data_t')
+            #move processed files
+            self.move_processed_files()
+            self.logger.info('End of Data Load, validation and transformation')
+        except Exception:
+            self.logger('Unsuccessful End of Data Load, validation and transformation')
+            raise Exception    
+        
+        
         
