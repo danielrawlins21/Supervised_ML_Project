@@ -28,9 +28,11 @@ def training_route_client():
         #get run id and data path
         run_id = config.get_run_id()
         data_path = config.training_data_path
-        #
+        #train model object initialization
         
-        return Response("Training successfull!")
+        #training the model
+                
+        return Response("Training successfull! and its RunID is: "+str(run_id))
     except ValueError:
         return Response("Error Occurred! %s" % ValueError)
     except KeyError:
