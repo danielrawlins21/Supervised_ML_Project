@@ -42,6 +42,38 @@ def training_route_client():
     except Exception as e:
         return Response("Error Occurred! %s" % e)
 
+@app.route('/batchprediction', methods = ['POST'])
+@cross_origin()
+def batch_prediction_route_client():
+    """
+    *method: batch_prediction_route_client
+    *description: method to call batch prediction route
+    *return: none
+    *
+    *who           when           version   change (include bug# if apply)
+    *---------     -----------    -------   ------------------------------
+    *D. Rawlins    19-JAN-2024       1.0     initial creation
+    *
+    *Parameters
+    *   none:
+    """
+    try:
+        config = Config()
+        #get run id and data path
+        run_id = config.get_run_id()
+        data_path = config.prediction_data_path
+        #prediction object initialization
+        trainModel = TrainModel(run_id, data_path)
+        #training the model
+        trainModel.training_model()
+                
+        return Response("Training successfull! and its RunID is: "+str(run_id))
+    except ValueError:
+        return Response("Error Occurred! %s" % ValueError)
+    except KeyError:
+        return Response("Error Occurred! %s" % KeyError)
+    except Exception as e:
+        return Response("Error Occurred! %s" % e)
 
 if __name__ == "__main__":
     #app.run()
