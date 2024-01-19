@@ -120,7 +120,7 @@ class DatabaseOperation:
             try:
                 with open(good_data_path+'/'+file,"r") as f:
                     next(f)
-                    reader = csv.reader(f, delimeter = ",")
+                    reader = csv.reader(f, delimiter = ",")
                     for line in enumerate(reader):
                         #self.logger.info(" %s: nu!!" %line[1])
                         to_db = ''
@@ -172,7 +172,7 @@ class DatabaseOperation:
             if not os.path.isdir(self.file_from_db):
                 os.makedirs(self.file_from_db)
             #Open CSV file for writing
-            csv_file = csv.writer(open(self.file_from_db + self.file_name, 'w', newline=''), delimeter=',', lineterminator='\r\n', quoting=csv.QUOTE_ALL, escapechar='\\')
+            csv_file = csv.writer(open(self.file_from_db + self.file_name, 'w', newline=''), delimiter=',', lineterminator='\r\n', quoting=csv.QUOTE_ALL, escapechar='\\')
             
             #Add the headers and data to the CSV file.
             csv_file.writerow(headers)

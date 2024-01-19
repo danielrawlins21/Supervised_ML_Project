@@ -1,0 +1,59 @@
+2024-01-19 03:10:55,135 : INFO : Start of Training
+2024-01-19 03:10:55,135 : INFO : Run_id: 2024-01-19_031055_269349121
+2024-01-19 03:10:55,135 : INFO : Start of Data Load, validation and transformation...
+2024-01-19 03:10:55,135 : INFO : Start of Archiving Old Rejected Files...
+2024-01-19 03:10:55,135 : INFO : End of Archiving Old Rejected Files...
+2024-01-19 03:10:55,135 : INFO : Start of Archiving Old Validated Files...
+2024-01-19 03:10:55,135 : ERROR : Exception raised while Archivinf Old Rejected Files: [Errno 2] No such file or directory: 'data/training_data_validation/reject_2024-01-19_030546'
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/shutil.py", line 825, in move
+    os.rename(src, real_dst)
+FileNotFoundError: [Errno 2] No such file or directory: 'data/training_data_validation/reject_2024-01-19_030546' -> 'data/training_data_archive//validation_2024-01-19_031055/reject_2024-01-19_030546'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/apps/ingestion/load_validate.py", line 200, in archive_old_files
+    shutil.move(source + f,dest)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/shutil.py", line 845, in move
+    copy_function(src, real_dst)
+  File "/usr/lib/python3.11/shutil.py", line 436, in copy2
+    copyfile(src, dst, follow_symlinks=follow_symlinks)
+  File "/usr/lib/python3.11/shutil.py", line 256, in copyfile
+    with open(src, 'rb') as fsrc:
+         ^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/training_data_validation/reject_2024-01-19_030546'
+2024-01-19 03:10:55,136 : ERROR : Unsuccessful End of Training
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/shutil.py", line 825, in move
+    os.rename(src, real_dst)
+FileNotFoundError: [Errno 2] No such file or directory: 'data/training_data_validation/reject_2024-01-19_030546' -> 'data/training_data_archive//validation_2024-01-19_031055/reject_2024-01-19_030546'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/apps/ingestion/load_validate.py", line 275, in validate_trainset
+    self.archive_old_files()
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/apps/ingestion/load_validate.py", line 234, in archive_old_files
+    raise e
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/apps/ingestion/load_validate.py", line 200, in archive_old_files
+    shutil.move(source + f,dest)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/shutil.py", line 845, in move
+    copy_function(src, real_dst)
+  File "/usr/lib/python3.11/shutil.py", line 436, in copy2
+    copyfile(src, dst, follow_symlinks=follow_symlinks)
+  File "/usr/lib/python3.11/shutil.py", line 256, in copyfile
+    with open(src, 'rb') as fsrc:
+         ^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/training_data_validation/reject_2024-01-19_030546'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/apps/training/train_model.py", line 58, in training_model
+    self.loadValidate.validate_trainset()
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/apps/ingestion/load_validate.py", line 294, in validate_trainset
+    self.logger('Unsuccessful End of Data Load, validation and transformation')
+TypeError: 'Logger' object is not callable

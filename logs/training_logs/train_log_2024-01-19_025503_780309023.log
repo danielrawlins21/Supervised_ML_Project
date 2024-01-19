@@ -1,0 +1,115 @@
+2024-01-19 02:55:03,716 : INFO : Start of Training
+2024-01-19 02:55:03,716 : INFO : Run_id: 2024-01-19_025503_780309023
+2024-01-19 02:55:03,716 : INFO : Start of Data Load, validation and transformation...
+2024-01-19 02:55:03,716 : INFO : Start of Archiving Old Rejected Files...
+2024-01-19 02:55:03,716 : INFO : End of Archiving Old Rejected Files...
+2024-01-19 02:55:03,716 : INFO : Start of Archiving Old Validated Files...
+2024-01-19 02:55:03,716 : INFO : End of Archiving Old Validated Files...
+2024-01-19 02:55:03,716 : INFO : Start of Archiving Old Processed Files...
+2024-01-19 02:55:03,716 : INFO : End of Archiving Old Processed Files...
+2024-01-19 02:55:03,716 : INFO : Start of Archiving Old Result Files...
+2024-01-19 02:55:03,716 : INFO : End of Archiving Old Result Files...
+2024-01-19 02:55:03,716 : INFO : Start of Reading values From Schema...
+2024-01-19 02:55:03,716 : INFO : End of Reading values From Schema...
+2024-01-19 02:55:03,716 : INFO : Start of Validating Column Length...
+2024-01-19 02:55:03,878 : INFO : End of Validating column Length
+2024-01-19 02:55:03,881 : INFO : Start of Validating Missing Values...
+2024-01-19 02:55:03,938 : INFO : End of Validating Missing Values
+2024-01-19 02:55:03,942 : INFO : Start of Replacing Missing Values with NULL...
+2024-01-19 02:55:04,013 : INFO : hr_employee_churn_data.csv: File Transformed successfully!!
+2024-01-19 02:55:04,013 : INFO : End of Replacing Missing Values with NULL...
+2024-01-19 02:55:04,013 : INFO : Start of Creating Table...
+2024-01-19 02:55:04,013 : INFO : Opened training database successfully
+2024-01-19 02:55:04,109 : INFO : CREATE TABLE training_raw_data_t column_name
+2024-01-19 02:55:04,157 : INFO : ALTER TABLE training_raw_data_t ADD COLUMN
+2024-01-19 02:55:04,234 : INFO : ALTER TABLE training_raw_data_t ADD COLUMN
+2024-01-19 02:55:04,260 : INFO : ALTER TABLE training_raw_data_t ADD COLUMN
+2024-01-19 02:55:04,285 : INFO : ALTER TABLE training_raw_data_t ADD COLUMN
+2024-01-19 02:55:04,337 : INFO : ALTER TABLE training_raw_data_t ADD COLUMN
+2024-01-19 02:55:04,402 : INFO : ALTER TABLE training_raw_data_t ADD COLUMN
+2024-01-19 02:55:04,471 : INFO : ALTER TABLE training_raw_data_t ADD COLUMN
+2024-01-19 02:55:04,520 : INFO : ALTER TABLE training_raw_data_t ADD COLUMN
+2024-01-19 02:55:04,616 : INFO : ALTER TABLE training_raw_data_t ADD COLUMN
+2024-01-19 02:55:04,617 : INFO : End of Creating Table...
+2024-01-19 02:55:04,617 : INFO : Opened training database successfully
+2024-01-19 02:55:04,617 : INFO : Start of Inserting Data into Table...
+2024-01-19 02:55:04,617 : ERROR : Exception raised while Inserting Data into Table: 'delimeter' is an invalid keyword argument for this function
+Traceback (most recent call last):
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/apps/database/database_operation.py", line 123, in insert_data
+    reader = csv.reader(f, delimeter = ",")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'delimeter' is an invalid keyword argument for this function
+2024-01-19 02:55:04,617 : INFO : End of Inserting Data into Table...
+2024-01-19 02:55:04,617 : INFO : Start of Exporting Data into CSV...
+2024-01-19 02:55:04,617 : INFO : Opened training database successfully
+2024-01-19 02:55:04,618 : ERROR : Exception raised while Exporting Data into CSV: 'delimeter' is an invalid keyword argument for this function
+Traceback (most recent call last):
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/apps/database/database_operation.py", line 175, in export_csv
+    csv_file = csv.writer(open(self.file_from_db + self.file_name, 'w', newline=''), delimeter=',', lineterminator='\r\n', quoting=csv.QUOTE_ALL, escapechar='\\')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'delimeter' is an invalid keyword argument for this function
+2024-01-19 02:55:04,618 : INFO : Start of Moving Processed Files...
+2024-01-19 02:55:04,618 : INFO : End of Moving Processed Files...
+2024-01-19 02:55:04,618 : INFO : End of Data Load, validation and transformation
+2024-01-19 02:55:04,618 : INFO : Start of Preprocessing...
+2024-01-19 02:55:04,618 : INFO : Start of Reading dataset...
+2024-01-19 02:55:04,618 : ERROR : Exception raised while reading dataset: No columns to parse from file
+Traceback (most recent call last):
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/apps/preprocess/preprocessor.py", line 48, in get_data
+    self.data = pd.read_csv(self.data_path+'_validation/InputFile.csv')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 948, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 611, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1448, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1723, in _make_engine
+    return mapping[engine](f, **self.options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/env/lib/python3.11/site-packages/pandas/io/parsers/c_parser_wrapper.py", line 93, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "parsers.pyx", line 586, in pandas._libs.parsers.TextReader.__cinit__
+pandas.errors.EmptyDataError: No columns to parse from file
+2024-01-19 02:55:04,645 : INFO : Unsuccessful end of Preprocessing...
+2024-01-19 02:55:04,645 : ERROR : Unsuccessful End of Training
+Traceback (most recent call last):
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/apps/preprocess/preprocessor.py", line 240, in preprocess_trainset
+    data = self.get_data()
+           ^^^^^^^^^^^^^^^
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/apps/preprocess/preprocessor.py", line 53, in get_data
+    raise e
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/apps/preprocess/preprocessor.py", line 48, in get_data
+    self.data = pd.read_csv(self.data_path+'_validation/InputFile.csv')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 948, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 611, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1448, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1723, in _make_engine
+    return mapping[engine](f, **self.options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/env/lib/python3.11/site-packages/pandas/io/parsers/c_parser_wrapper.py", line 93, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "parsers.pyx", line 586, in pandas._libs.parsers.TextReader.__cinit__
+pandas.errors.EmptyDataError: No columns to parse from file
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/apps/training/train_model.py", line 60, in training_model
+    self.X, self.y = self.preProcess.preprocess_trainset()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/apps/preprocess/preprocessor.py", line 261, in preprocess_trainset
+    raise Exception
+Exception

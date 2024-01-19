@@ -64,7 +64,7 @@ class LoadValidate:
         except Exception as e:
             self.logger.exception('ValueError raised while Reading values From Schema: %s' %e)
             raise ellipsis
-        return column_names, numer_of_columns
+        return column_names, number_of_columns
     def validate_column_length(self, number_of_columns):
         """
         *method: validate_column_length
@@ -173,7 +173,7 @@ class LoadValidate:
             self.logger.info('Start of Archiving Old Rejected Files...')
             source = self.data_path+'_rejects/'
             if os.path.isdir(source):
-                path = self.data_path+'_rejects/'
+                path = self.data_path+'_archive'
                 if not os.path.isdir(path):
                     os.makedirs(path)
                 dest = path+'/reject_'+str(date)+"_"+str(time)
@@ -188,7 +188,7 @@ class LoadValidate:
             self.logger.info('Start of Archiving Old Validated Files...')
             source = self.data_path+'_validation/'
             if os.path.isdir(source):
-                path = self.data_path+'_archive/'
+                path = self.data_path+'_archive'
                 if not os.path.isdir(path):
                     os.makedirs(path)
                 dest = path + '/validation_' + str(date) +'_'+str(time)
@@ -197,13 +197,13 @@ class LoadValidate:
                     if not os.path.isdir(dest):
                         os.makedirs(dest)
                     if f not in os.listdir(dest):
-                        shutil.move(source+f,dest)
+                        shutil.move(source + f,dest)
             self.logger.info('End of Archiving Old Validated Files...')
             
             self.logger.info('Start of Archiving Old Processed Files...')
             source = self.data_path+'_processed/'
             if os.path.isdir(source):
-                path = self.data_path+'_archive/'
+                path = self.data_path+'_archive'
                 if not os.path.isdir(path):
                     os.makedirs(path)
                 dest = path + '/processed_' + str(date) +'_'+str(time)
@@ -218,7 +218,7 @@ class LoadValidate:
             self.logger.info('Start of Archiving Old Result Files...')
             source = self.data_path+'_results/'
             if os.path.isdir(source):
-                path = self.data_path+'_archive/'
+                path = self.data_path+'_archive'
                 if not os.path.isdir(path):
                     os.makedirs(path)
                 dest = path + '/results_' + str(date) +'_'+str(time)

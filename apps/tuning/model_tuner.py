@@ -163,7 +163,7 @@ class ModelTuner:
                 self.logger.info('Accuracy for Random Forest:'+str(self.random_forest_score))
             else:
                 self.random_forest_score = roc_auc_score(test_y, self.prediction_random_forest) #AUC for Random Forest
-                self.logger.info('AUC for Random Fores:'+str(self.random_fores_score))
+                self.logger.info('AUC for Random Forest:'+str(self.random_forest_score))
             
             #Comparing the models
             self.logger.info('End of finding best model...')

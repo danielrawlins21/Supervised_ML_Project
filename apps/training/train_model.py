@@ -64,6 +64,8 @@ class TrainModel:
             #create clusters
             number_of_clusters = self.cluster.elbow_plot(self.X)
             # Divide the data into clusters
+            self.X = self.cluster.create_clusters(self.X, number_of_clusters)
+            # create a new column in the dataset consisting of the corresponding cluster assigments.
             self.X['Labels'] = self.y
             #getting the unique clusters from our dataset
             list_of_clusters = self.X['Cluster'].unique()
@@ -79,7 +81,7 @@ class TrainModel:
                 x_train, x_test, y_train, y_test = train_test_split(cluster_features,cluster_label,test_size=0.2,random_state=0)
                 
                 #getting the best model for each clusters
-                best_model_name, best_model = self.modelTuner(x_train, y_train, x_test, y_test)
+                best_model_name, best_model = self.modelTuner.get_best_model(x_train, y_train, x_test, y_test)
                 
                 #saving the best model to the directory.
                 save_model = self.fileOperation.save_model(best_model,best_model_name+str(i))
