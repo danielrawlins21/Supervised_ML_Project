@@ -55,8 +55,9 @@ class PredictModel:
             #load model
             kmeans = self.fileOperation.load_model('KMeans')
             #cluster selection
-            clusters = kmeans.predict(self.X.drop(['empid'], axis=1))
+            clusters = kmeans.predict(self.X.drop(['empid'],axis=1))
             self.X['clusters'] = clusters
+            clusters = self.X['clusters'].unique()
             y_predicted = []
             for i in clusters:
                 self.logger.info('clusters loop started')

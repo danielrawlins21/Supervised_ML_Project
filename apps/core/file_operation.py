@@ -78,7 +78,7 @@ class FileOperation:
         try:
             self.logger.info('Start of Load Model')
             with open('apps/models/'+file_name+'/'+file_name+'.sav','rb') as f:
-                self.logger.info('Model File '+ file_name +'loaded')
+                self.logger.info('Model File '+ file_name +' loaded')
                 self.logger.info('End of Load Model')
                 return pickle.load(f)
         except Exception as e:
