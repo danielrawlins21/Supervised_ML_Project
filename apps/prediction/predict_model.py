@@ -74,18 +74,19 @@ class PredictModel:
             self.logger.exception('Unsuccessful End of Prediction')
             raise Exception
     
-    def single_predict_from_model(self):
+    def single_predict_from_model(self,data):
         """
         *method: single_predict_from_model
         *description: method to predict single results
-        *return: none
+        *return: y_predicted
         *
         *who           when           version   change (include bug# if apply)
         *---------     -----------    -------   ------------------------------
         *D. Rawlins    19-JAN-2024       1.0     initial creation
+        *D. Rawlins    19-JAN-2024      1.0.1    editing return function
         *
         *Parameters
-        *   none:
+        *   data:
         """
         try:
             self.logger.info('Start of Prediction')
@@ -112,7 +113,7 @@ class PredictModel:
                 #result = pd.DataFrame({"EmpId":cluster_data['empid'],"Prediction":y_predicted})
                 #result.to_csv(self.data_path+'_results/'+'Predictions.csv', header=True, mode='a+', index=False)
                 self.logger.info('Output : '+str(y_predicted))
-                
+                return int(y_predicted[0])
             self.logger.info('End of Prediction')
         except Exception:
             self.logger.exception('Unsuccessful End of Prediction')

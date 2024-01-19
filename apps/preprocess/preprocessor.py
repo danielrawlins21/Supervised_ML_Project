@@ -298,7 +298,7 @@ class Preprocessor:
             self.logger.info('Unsuccessful end of Preprocessing...')
             raise Exception    
      
-    def preprocess_predict(self):
+    def preprocess_predict(self,data):
         """
         *method: preprocess_predict
         *description: method to pre-process prediction data

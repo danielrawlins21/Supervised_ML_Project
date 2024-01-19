@@ -1,0 +1,8 @@
+2024-01-19 17:25:28,034 : INFO : Start of Prediction
+2024-01-19 17:25:28,034 : INFO : run_id:2024-01-19_172528_792365347
+2024-01-19 17:25:28,034 : ERROR : Unsuccessful End of Prediction
+Traceback (most recent call last):
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/apps/prediction/predict_model.py", line 95, in single_predict_from_model
+    self.X = self.preProcess.preprocess_predict(data)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Preprocessor.preprocess_predict() takes 1 positional argument but 2 were given
