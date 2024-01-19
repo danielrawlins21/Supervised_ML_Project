@@ -42,6 +42,7 @@ class LoadValidate:
         *who           when           version   change (include bug# if apply)
         *---------     -----------    -------   ------------------------------
         *D. Rawlins    12-JAN-2024       1.0     initial creation
+        *D. Rawlins    19-JAN-2024     1.0001     column_names = dic['colName'] to column_names = dic['ColName']
         *
         *Parameters
         *   none:
@@ -51,7 +52,7 @@ class LoadValidate:
             with open('apps/database/'+schema_file+'.json','r') as f:
                 dic = json.load(f)
                 f.close()
-            column_names = dic['colName']
+            column_names = dic['ColName']
             number_of_columns = dic['NumberofColumns']
             self.logger.info('End of Reading values From Schema...')
         except ValueError:

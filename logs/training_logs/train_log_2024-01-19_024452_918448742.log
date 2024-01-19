@@ -1,0 +1,43 @@
+2024-01-19 02:44:52,113 : INFO : Start of Training
+2024-01-19 02:44:52,113 : INFO : Run_id: 2024-01-19_024452_918448742
+2024-01-19 02:44:52,113 : INFO : Start of Data Load, validation and transformation...
+2024-01-19 02:44:52,113 : INFO : Start of Archiving Old Rejected Files...
+2024-01-19 02:44:52,114 : INFO : End of Archiving Old Rejected Files...
+2024-01-19 02:44:52,114 : INFO : Start of Archiving Old Validated Files...
+2024-01-19 02:44:52,114 : INFO : End of Archiving Old Validated Files...
+2024-01-19 02:44:52,114 : INFO : Start of Archiving Old Processed Files...
+2024-01-19 02:44:52,114 : INFO : End of Archiving Old Processed Files...
+2024-01-19 02:44:52,114 : INFO : Start of Archiving Old Result Files...
+2024-01-19 02:44:52,114 : INFO : End of Archiving Old Result Files...
+2024-01-19 02:44:52,114 : INFO : Start of Reading values From Schema...
+2024-01-19 02:44:52,124 : ERROR : KeyError raised while Reading values From Schema
+Traceback (most recent call last):
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/apps/ingestion/load_validate.py", line 54, in values_from_schema
+    column_names = dic['colName']
+                   ~~~^^^^^^^^^^^
+KeyError: 'colName'
+2024-01-19 02:44:52,124 : ERROR : Unsuccessful End of Training
+Traceback (most recent call last):
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/apps/ingestion/load_validate.py", line 54, in values_from_schema
+    column_names = dic['colName']
+                   ~~~^^^^^^^^^^^
+KeyError: 'colName'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/apps/ingestion/load_validate.py", line 276, in validate_trainset
+    column_names, number_of_columns = self.values_from_schema('schema_train')
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/apps/ingestion/load_validate.py", line 62, in values_from_schema
+    raise KeyError
+KeyError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/apps/training/train_model.py", line 58, in training_model
+    self.loadValidate.validate_trainset()
+  File "/home/draeghonvm/Projects/Supervised_ML_Project/apps/ingestion/load_validate.py", line 293, in validate_trainset
+    self.logger('Unsuccessful End of Data Load, validation and transformation')
+TypeError: 'Logger' object is not callable

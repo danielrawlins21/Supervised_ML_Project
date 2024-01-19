@@ -4,6 +4,7 @@ from flask import Response
 from flask_cors import CORS, cross_origin
 
 from apps.core.config import Config
+from apps.training.train_model import TrainModel
 
 app = Flask(__name__)
 CORS(app)
@@ -29,8 +30,9 @@ def training_route_client():
         run_id = config.get_run_id()
         data_path = config.training_data_path
         #train model object initialization
-        
+        trainModel = TrainModel(run_id, data_path)
         #training the model
+        trainModel.training_model()
                 
         return Response("Training successfull! and its RunID is: "+str(run_id))
     except ValueError:
