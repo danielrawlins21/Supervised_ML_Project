@@ -4,6 +4,7 @@ Flask-Cors
 kneed
 Flask-MonitoringDashboard
 Jinja2
+requests
 werkzeug
 itsdangerous
 certifi

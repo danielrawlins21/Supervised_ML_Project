@@ -1,5 +1,5 @@
 from wsgiref import simple_server
-from flask import Flask, request, render_template
+from flask import Flask, render_template, request
 from flask import Response
 from flask_cors import CORS, cross_origin
 import flask_monitoringdashboard as dashboard
@@ -11,7 +11,24 @@ from apps.training.train_model import TrainModel
 from apps.prediction.predict_model import PredictModel
 
 app = Flask(__name__)
+dashboard.bind(app)
 CORS(app)
+
+@app.route('/', methods=['POST','GET'])
+def index_page():
+    """
+    *method: index_page
+    *description: method to call index html page
+    *return: index.html
+    *
+    *who           when           version   change (include bug# if apply)
+    *---------     -----------    -------   ------------------------------
+    *D. Rawlins    12-JAN-2024       1.0     initial creation
+    *
+    *Parameters
+    *   none:
+    """
+    return render_template('index.html')
 
 @app.route('/training', methods = ['POST'])
 @cross_origin()
