@@ -11,7 +11,7 @@ from apps.training.train_model import TrainModel
 from apps.prediction.predict_model import PredictModel
 
 app = Flask(__name__)
-dashboard.bind(app)
+
 CORS(app)
 
 @app.route('/', methods=['POST','GET'])
@@ -177,6 +177,7 @@ def single_prediction_route_client():
     except Exception as e:
         return Response("Error Occurred! %s" % e)
 
+dashboard.bind(app)
 
 if __name__ == "__main__":
     #app.run()
